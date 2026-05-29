@@ -1,0 +1,62 @@
+dev:
+  base_path: /Volumes/workspace/default/ecommerce_dev
+prod:
+  base_path: /Volumes/workspace/default/ecommerce
+
+layers:
+  bronze:
+    - name: orders
+      source: olist_orders_dataset.csv
+      primary_key: order_id
+
+    - name: customers
+      source: olist_customers_dataset.csv
+      primary_key: customer_id
+    
+    - name: products
+      source: olist_products_dataset.csv
+      primary_key: product_id
+
+    - name: sellers
+      source: olist_sellers_dataset.csv
+      primary_key: seller_id
+
+    - name: payments
+      source: olist_order_payments_dataset.csv
+      primary_key: order_id
+
+    - name: order_items
+      source: olist_order_items_dataset.csv
+      primary_key: order_id
+
+    - name: reviews
+      source: olist_order_reviews_dataset.csv
+      primary_key: review_id
+
+    - name: translation
+      source: product_category_name_translation.csv
+      primary_key: product_category_name
+
+  silver:
+    table_name: order_details
+    primary_key: order_id
+    critical_columns:
+      - order_id
+      - customer_id
+      - payment_value
+      - order_status
+
+  gold:
+    tables:
+      - name: revenue_by_category
+        partition_by: product_category_name_english
+      - name: monthly_revenue
+        partition_by: year
+      - name: top_sellers
+        partition_by: null
+      - name: customer_ltv
+        partition_by: null
+      - name: delivery_by_state
+        partition_by: customer_state
+      - name: ontime_delivery
+        partition_by: null
