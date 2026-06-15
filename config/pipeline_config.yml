@@ -23,15 +23,15 @@ layers:
 
     - name: payments
       source: olist_order_payments_dataset.csv
-      primary_key: order_id
+      primary_key: null
 
     - name: order_items
       source: olist_order_items_dataset.csv
-      primary_key: order_id
+      primary_key: null
 
     - name: reviews
       source: olist_order_reviews_dataset.csv
-      primary_key: review_id
+      primary_key: null
 
     - name: translation
       source: product_category_name_translation.csv
