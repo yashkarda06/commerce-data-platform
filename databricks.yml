@@ -1,0 +1,23 @@
+bundle:
+  name: commerce-data-platform
+
+variables:
+  environment:
+    default: dev
+  run_mode:
+    default: full
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-767f3fe4-6453.cloud.databricks.com
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-767f3fe4-6453.cloud.databricks.com
+
+include:
+  - job/pipeline_job.yml

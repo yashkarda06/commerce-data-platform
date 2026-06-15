@@ -1,0 +1,35 @@
+resources:
+  jobs:
+    ecommerce_pipeline:
+      name: ecommerce_pipeline_${var.environment}
+      
+      tasks:
+        - task_key: ingest
+          notebook_task:
+            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_01_ingest
+            base_parameters:
+              environment: ${var.environment}
+              run_mode: ${var.run_mode}
+
+        - task_key: transform
+          depends_on:
+            - task_key: ingest
+          notebook_task:
+            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_02_transform
+            base_parameters:
+              environment: ${var.environment}
+              run_mode: ${var.run_mode}
+
+        - task_key: aggregate
+          depends_on:
+            - task_key: transform
+          notebook_task:
+            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_03_aggregate
+            base_parameters:
+              environment: ${var.environment}
+              run_mode: ${var.run_mode}
+
+      schedule:
+        quartz_cron_expression: "0 0 0 * * ?"
+        timezone_id: Asia/Kolkata
+        pause_status: PAUSED
