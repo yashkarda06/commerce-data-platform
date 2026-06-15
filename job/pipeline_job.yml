@@ -6,7 +6,7 @@ resources:
       tasks:
         - task_key: ingest
           notebook_task:
-            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_01_ingest
+            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_01_ingest.py
             base_parameters:
               environment: ${var.environment}
               run_mode: ${var.run_mode}
@@ -15,7 +15,7 @@ resources:
           depends_on:
             - task_key: ingest
           notebook_task:
-            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_02_transform
+            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_02_transform.py
             base_parameters:
               environment: ${var.environment}
               run_mode: ${var.run_mode}
@@ -24,7 +24,7 @@ resources:
           depends_on:
             - task_key: transform
           notebook_task:
-            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_03_aggregate
+            notebook_path: /Workspace/Users/yash.karda.yk@gmail.com/commerce-data-platform/notebooks/job_03_aggregate.py
             base_parameters:
               environment: ${var.environment}
               run_mode: ${var.run_mode}
