@@ -39,7 +39,7 @@ layers:
 
   silver:
     table_name: order_details
-    primary_key: order_id
+    primary_key: null
     critical_columns:
       - order_id
       - customer_id
