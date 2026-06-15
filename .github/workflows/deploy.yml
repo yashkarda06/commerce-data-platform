@@ -20,8 +20,7 @@ jobs:
 
       - name: Install Databricks CLI
         run: |
-          pip install databricks-cli
-          pip install databricks-sdk
+           curl -fsSL https://raw.githubusercontent.com/databricks/setup-databricks-cli/v0.1.0/install.sh | sh
 
       - name: Deploy Bundle
         env:
